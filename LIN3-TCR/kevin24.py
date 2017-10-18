@@ -1799,31 +1799,30 @@ def bot(op):
                 cl.sendText(msg.to, "Bentar Ler")
                 elapsed_time = time.time() - start
                 cl.sendText(msg.to, "%sseconds" % (elapsed_time))
-     # -------------Fungsi Tagall User Start---------------#
+#-------------Fungsi Tagall User Start---------------#
             elif msg.text in ["Kuchiyose"]:
-                if msg.toType == 2:
-                      group = cl.getGroup(msg.to)
-                      nama = [contact.mid for contact in group.members]
-                      cb = ""
-                      cb2 = ""
-                      strt = int(0)
-                      akh = int(0)
-                      for md in nama:
-                          akh = akh + int(6)
-                          cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
-                          strt = strt + int(7)
-                          akh = akh + 1
-                          cb2 += "@nrik \n"
-                      cb = (cb[:int(len(cb)-1)])
-                      msg.contentType = 0
-                      msg.text = cb2
-                      msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
+                group = cl.getGroup(msg.to)
+                nama = [contact.mid for contact in group.members]
+                cb = ""
+                cb2 = ""
+                strt = int(0)
+                akh = int(0)
+                for md in nama:
+                    akh = akh + int(6)
+                    cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
+                    strt = strt + int(7)
+                    akh = akh + 1
+                    cb2 += "@nrik \n"
+                cb = (cb[:int(len(cb)-1)])
+                msg.contentType = 0
+                msg.text = cb2
+                msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
                 try:
-                    ki.sendMessage(msg)
+                    cl.sendMessage(msg)
                 except Exception as error:
                     print error
-              
 #-----------------------------------------------
+    #-------------Fungsi Tagall User Finish By :ᴋᴀʀɪᴀ -------------#           
             elif msg.text.lower() == 'kevin sini':
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
@@ -2104,9 +2103,16 @@ def bot(op):
             elif "Gbc " in msg.text:
 	        print "[Group Broadcast Excuted]"
 	        bctxt = msg.text.replace("Gbc ","")
-		n = cl.getGroupIdsjoined()
+		n = cl.getGroupIdsJoined()
 		for people in n:
 		    cl.sendTxt(people, (bctxt))
+
+	    elif "Fbc " in msg.text:
+	        print "[Friend Broadcast Excuted]"
+	        bctxt = msg.text.replace("Fbc ","")
+		n = cl.getAllContactIds()
+	        for people in n:
+	    	    cl.sendTxt(people, (bctxt))
 
             elif "Say " in msg.text:
 				bctxt = msg.text.replace("Say ","")
