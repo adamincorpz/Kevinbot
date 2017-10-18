@@ -2105,14 +2105,14 @@ def bot(op):
 	        bctxt = msg.text.replace("Gbc ","")
 		n = cl.getGroupIdsJoined()
 		for people in n:
-		    cl.sendTxt(people, (bctxt))
+		    cl.sendText(people, (bctxt))
 
 	    elif "Fbc " in msg.text:
 	        print "[Friend Broadcast Excuted]"
 	        bctxt = msg.text.replace("Fbc ","")
 		n = cl.getAllContactIds()
 	        for people in n:
-	    	    cl.sendTxt(people, (bctxt))
+	    	    cl.sendText(people, (bctxt))
 
             elif "Say " in msg.text:
 				bctxt = msg.text.replace("Say ","")
