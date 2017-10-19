@@ -1337,18 +1337,18 @@ def bot(op):
                     cl.sendText(msg.to,"Tidak dapat digunakan untuk kelompok selain")
             elif msg.text in ["Bl"]:
                 wait["wblack"] = True
-                cl.sendText(msg.to,"Please send contacts from the person you want to add to the blacklistô€œô€…”👈")
+                cl.sendText(msg.to,"Kirim Kontak untuk dimasukan Ke Daftar Blacklist"☜")
             elif msg.text in ["hapus Bl"]:
                 wait["dblack"] = True
-                cl.sendText(msg.to,"Please send contacts from the person you want to add from the blacklistô€œô€…”👈")
+                cl.sendText(msg.to,"Kirim Kontak untuk dihapus Dari Daftar Blacklist"☜")
             elif msg.text in ["Bl cek"]:
                 if wait["commentBlack"] == {}:
-                    cl.sendText(msg.to,"Nothing in the blacklistô€œ🛡")
+                    cl.sendText(msg.to,"Kosong Gblk"􀰂􀇉􏿿")
                 else:
-                    cl.sendText(msg.to,"The following is a blacklistô€œ👈")
+                    cl.sendText(msg.to,"Daftar Blacklist"☜")
                     mc = ""
                     for mi_d in wait["commentBlack"]:
-                        mc += "ãƒ»" +cl.getContact(mi_d).displayName + "\n"
+                        mc += "☞" +cl.getContact(mi_d).displayName + "\n"
                     cl.sendText(msg.to,mc)
             elif msg.text.lower() == 'jam on':
                 if wait["clock"] == True:
