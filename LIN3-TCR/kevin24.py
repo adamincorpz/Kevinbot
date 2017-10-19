@@ -201,13 +201,13 @@ def bot(op):
             if op.param2 in Bots:
                 return
             kk.sendText(op.param1,cl.getContact(op.param2).displayName + "Good Bye Honey\nಥ_ಥ")
-            print "MEMBER HAS LEFT THE GROUP"
+            print ("MEMBER HAS LEFT THE GROUP")
 # ----------------- NOTIFED MEMBER JOIN GROUP
         if op.type == 17:
             if op.param2 in Bots:
                 return
             kk.sendText(op.param1,cl.getContact(op.param2).displayName + "Welcome Honey\n( ˘ ³˘)♥")
-            print "MEMBER HAS JOIN THE GROUP"
+            print ("MEMBER HAS JOIN THE GROUP")
        #-----------------NOTIFED MEMBER JOIN GROUP
         if op.type == 19:
            if op.param2 not in Bots:
@@ -424,7 +424,7 @@ def bot(op):
                     else:
                         wait["commentBlack"][msg.contentMetadata["mid"]] = True
                         wait["wblack"] = False
-                        cl.sendText(msg.to,"Itu tidak berkomentar👈")
+                        cl.sendText(msg.to,"Done􀜁􀆻􏿿")
                 elif wait["dblack"] == True:
                     if msg.contentMetadata["mid"] in wait["commentBlack"]:
                         del wait["commentBlack"][msg.contentMetadata["mid"]]
@@ -1337,15 +1337,15 @@ def bot(op):
                     cl.sendText(msg.to,"Tidak dapat digunakan untuk kelompok selain")
             elif msg.text in ["Bl"]:
                 wait["wblack"] = True
-                cl.sendText(msg.to,"Kirim Kontak untuk dimasukan Ke Daftar Blacklist"☜")
+                cl.sendText(msg.to,"Kirim Kontak untuk dimasukan Ke Daftar Blacklist☜")
             elif msg.text in ["hapus Bl"]:
                 wait["dblack"] = True
-                cl.sendText(msg.to,"Kirim Kontak untuk dihapus Dari Daftar Blacklist"☜")
+                cl.sendText(msg.to,"Kirim Kontak untuk dihapus Dari Daftar Blacklist☜")
             elif msg.text in ["Bl cek"]:
                 if wait["commentBlack"] == {}:
-                    cl.sendText(msg.to,"Kosong Gblk"􀰂􀇉􏿿")
+                    cl.sendText(msg.to,"Kosong Gblk􀰂􀇉􏿿")
                 else:
-                    cl.sendText(msg.to,"Daftar Blacklist"☜")
+                    cl.sendText(msg.to,"Daftar Blacklist☜")
                     mc = ""
                     for mi_d in wait["commentBlack"]:
                         mc += "☞" +cl.getContact(mi_d).displayName + "\n"
@@ -1503,6 +1503,27 @@ def bot(op):
                                 cl.sendText(msg.to,"Target Unlocked")
                             except:
                                 cl.sendText(msg.to,"Error")
+            
+            elif "Unban all" in msg.text:
+		if msg.toType == 2:
+                    print "ok"
+   	            _name = msg.text.replace("Unban all","")
+                    gs = cl.getGroup(msg.to)
+      	            cl.sendText(msg.to,"Semua Telah Di Hapus")
+                    targets = []
+	            for g in gs.members:
+                        if _name in g.displayName:
+			    targets.append(g.mid)
+   	            if targets == []:
+		        cl.sendText(msg.to,"Maaf")
+	            else:
+	                for target in targets:
+		            try:
+			        del wait["blacklist"][target]
+		                f=codecs.open('st2__b.json','w','utf-8')
+			        json.dump(wait["blacklist"],f, sort_keys=True,indent=4,ensure_ascii=False)
+		            except:
+		                cl.sentText(msg.to,"Berhasil Dihapus")
 
             elif "Ban:" in msg.text:                  
                        nk0 = msg.text.replace("Ban:","")
