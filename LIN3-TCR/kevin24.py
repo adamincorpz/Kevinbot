@@ -499,7 +499,7 @@ def bot(op):
                 midd = msg.text.replace("Kick:","")
                 cl.kickoutFromGroup(msg.to,[midd])
 	    elif "Mayhem" in msg.text:
-              if msg.from_ in admin:
+              if msg.from_ in admsa:
                 if msg.toType == 2:
                     print "ok"
                     _name = msg.text.replace("Mayhem","")
