@@ -116,7 +116,7 @@ ki4mid = ki4.getProfile().mid
 ki5mid = ki5.getProfile().mid
 ki6mid = ki6.getProfile().mid
 Bots=[mid,kimid,ki2mid,ki3mid,ki4mid,ki5mid,ki6mid]
-admsa = "u48a5866531b8b1442e5351179cfb423c"
+admin = "u48a5866531b8b1442e5351179cfb423c"
 
 wait = {
     'contact':False,
@@ -498,7 +498,7 @@ def bot(op):
                 midd = msg.text.replace("Kick:","")
                 cl.kickoutFromGroup(msg.to,[midd])
 	    elif "Mayhem" in msg.text:
-              if msg.from_ in admsa:
+              if msg.from_ in admin:
                 if msg.toType == 2:
                     print "ok"
                     _name = msg.text.replace("Mayhem","")
@@ -1104,18 +1104,19 @@ def bot(op):
                 else:md+="􀜁􀇔􏿿Cancel Protect:off 􀜁􀄰􏿿\n"
                 cl.sendText(msg.to,md)
                 msg.contentType = 13
-                msg.contentMetadata = {'mid': admsa}
+                msg.contentMetadata = {'mid': admin}
                 cl.sendMessage(msg)
             elif msg.text.lower() == 'me':
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': mid}
                 cl.sendMessage(msg)
             elif cms(msg.text,["creator","Creator"]):
+	      if msg.from_ in admin:
                 msg.contentType = 13
-                msg.contentMetadata = {'mid': admsa}
-                cl.sendText(msg.to,"􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿")
-                cl.sendMessage(msg)
-                cl.sendText(msg.to,"􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿")
+                msg.contentMetadata = {'mid': admin}
+                ki.sendText(msg.to,"􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿􂤁􀆋down􏿿")
+                ki.sendMessage(msg)
+                ki.sendText(msg.to,"􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿􂤁􀆊up􏿿")
             elif "Set album:" in msg.text:
                 gid = msg.text.replace("Set album:","")
                 album = cl.getAlbum(gid)
@@ -1459,10 +1460,11 @@ def bot(op):
                                     cl.sendText(msg.to,"Good Bye")
 #-----------------------------------------------------------
             elif "Admin add @" in msg.text:
-                if msg.from_ in admsa:
+                if msg.from_ in admin:
                     print "[Command]Staff add executing"
                     _name = msg.text.replace("Admin add @","")
                     _nametarget = _name.rstrip('  ')
+		    gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
                     gs = ki2.getGroup(msg.to)
                     gs = ki3.getGroup(msg.to)
@@ -1476,7 +1478,7 @@ def bot(op):
                         for target in targets:
                             try:
                                 admin.append(target)
-                                cl.sendText(msg.to,"Admin Ditambahkan")
+                                ki.sendText(msg.to,"Admin Ditambahkan")
                             except:
                                 pass
                     print "[Command]Staff add executed"
@@ -1485,13 +1487,14 @@ def bot(op):
                     ki.sendText(msg.to,"Admin permission required.")\
 
             elif "Admin remove @" in msg.text:
-                if msg.from_ in admsa:
+                if msg.from_ in admin:
                     print "[Command]Staff remove executing"
                     _name = msg.text.replace("Admin remove @","")
                     _nametarget = _name.rstrip('  ')
+	            gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
-                    gs = kk.getGroup(msg.to)
-                    gs = kc.getGroup(msg.to)
+                    gs = ki2.getGroup(msg.to)
+                    gs = ki3.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
@@ -1502,7 +1505,7 @@ def bot(op):
                         for target in targets:
                             try:
                                 admin.remove(target)
-                                ko.sendText(msg.to,"Admin Dihapus")
+                                ki.sendText(msg.to,"Admin Dihapus")
                             except:
                                 pass
                     print "[Command]Staff remove executed"
@@ -1518,7 +1521,7 @@ def bot(op):
                     mc = ""
                     for mid in admin:
                         mc += "->" +ki.getContact(mid).displayName + "\n"
-                    cl.sendText(msg.to,mc)
+                    ki.sendText(msg.to,mc)
                     print "[Command]Stafflist executed"
 #-----------------------------------------------------------
             elif "Ban @" in msg.text:
@@ -1686,11 +1689,11 @@ def bot(op):
 	    #-----------------------------------------------
 #--------------ListGroup------------------#
             elif msg.text in ["Glist"]:
-                gid = cl.getGroupIdsJoined()
-                h = ""
-                for i in gid:
-                    h += "[★] %s\n" % (cl.getGroup(i).name +"→["+str(len(cl.getGroup(i).members))+"]")
-                cl.sendText(msg.to,"▒▒▓█[List Group]█▓▒▒\n"+ h +"Total Group =" +"["+str(len(gid))+"]")
+                 gid = cl.getGroupIdsJoined()
+                 h = ""
+                 for i in gid:
+                  h += "[★] %s\n" % (cl.getGroup(i).name +"→["+str(len(cl.getGroup(i).members))+"]")
+                 cl.sendText(msg.to,"▒▒▓█[List Group]█▓▒▒\n"+ h +"Total Group =" +"["+str(len(gid))+"]")
 #---------------Cek Sider---------------
 	    elif msg.text == "Cctv":
                       cl.sendText(msg.to, "Cek CCTV")
@@ -2633,6 +2636,8 @@ def FancySalsaImoet():
             time.sleep(30)
             profile = cl.getProfile()
             profile.displayName = "♞KevinV69▲ ⓔ30™"
+	    cl.updateProfile(profile)
+	    time.sleep(30)
         except:
             pass
 thread2 = threading.Thread(target=FancySalsaImoet)
