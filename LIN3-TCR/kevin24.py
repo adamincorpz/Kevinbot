@@ -1459,7 +1459,7 @@ def bot(op):
                                     cl.sendText(msg.to,"Good Bye")
 #-----------------------------------------------------------
             elif "Admin add @" in msg.text:
-                if msg.from_ in admin:
+                if msg.from_ in admsa:
                     print "[Command]Staff add executing"
                     _name = msg.text.replace("Admin add @","")
                     _nametarget = _name.rstrip('  ')
@@ -1485,7 +1485,7 @@ def bot(op):
                     ki.sendText(msg.to,"Admin permission required.")\
 
             elif "Admin remove @" in msg.text:
-                if msg.from_ in admin:
+                if msg.from_ in admsa:
                     print "[Command]Staff remove executing"
                     _name = msg.text.replace("Admin remove @","")
                     _nametarget = _name.rstrip('  ')
@@ -1876,9 +1876,9 @@ def bot(op):
                   tt = cl.getAllContactIds()
                   t = 5
                   for i in tt:
-                    while(t):
-                      cl.sendTxt(i, (bctxt))
-                      t-=1
+                      while(t):
+                        cl.sendTxt(i, (bctxt))
+                        t-=1
 #-------------------Fungsi Spam Start----------------------#
             elif "Spam " in msg.text:
                    txt = msg.text.split(" ")
@@ -2624,36 +2624,15 @@ def FancySalsaImoet():
     while True:
         try:
             profile = cl.getProfile()
-            profile.displayName = "♞K▲ ⓔ30™"
+            profile.displayName = "♞You Know Me?▲ ⓔ30™"
             cl.updateProfile(profile)
             time.sleep(30)
             profile = cl.getProfile()
-            profile.displayName = "♞Ke▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)
-            profile = cl.getProfile()
-            profile.displayName = "♞Kev▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)
-            profile = cl.getProfile()
-            profile.displayName = "♞Kevi▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)
-            profile = cl.getProfile()
-            profile.displayName = "♞Kevin▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)
-            profile.displayName = "♞KevinV▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)
-            profile = cl.getProfile()
-            profile.displayName = "♞KevinV6▲ ⓔ30™"
+            profile.displayName = "♞Yeah This Me▲ ⓔ30™"
             cl.updateProfile(profile)
             time.sleep(30)
             profile = cl.getProfile()
             profile.displayName = "♞KevinV69▲ ⓔ30™"
-            cl.updateProfile(profile)
-            time.sleep(30)         
         except:
             pass
 thread2 = threading.Thread(target=FancySalsaImoet)
