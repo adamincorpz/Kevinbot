@@ -199,13 +199,13 @@ def bot(op):
         if op.type == 15:
             if op.param2 in Bots:
                 return
-            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "Good Bye Honey\nಥ_ಥ")
+            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "\nGood Bye Honeyಥ_ಥ")
             print ("MEMBER HAS LEFT THE GROUP")
 # ----------------- NOTIFED MEMBER JOIN GROUP
         if op.type == 17:
             if op.param2 in Bots:
                 return
-            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "Welcome Honey\n( ˘ ³˘)♥")
+            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "\nWelcome Honey( ˘ ³˘)♥")
             print ("MEMBER HAS JOIN THE GROUP")
        #-----------------NOTIFED MEMBER JOIN GROUP
         if op.type == 19:
@@ -1930,7 +1930,7 @@ def bot(op):
                     print error
 #-----------------------------------------------
     #-------------Fungsi Tagall User Finish By :ᴋᴀʀɪᴀ -------------#           
-            elif msg.text.lower() == 'kevin sini':
+            elif msg.text.lower() == 'sini beb':
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
@@ -2092,7 +2092,7 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki6.updateGroup(G)
 #-----------------------------------------------
-            elif msg.text.lower() == 'vin pulang':
+            elif msg.text.lower() == 'pulang':
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
