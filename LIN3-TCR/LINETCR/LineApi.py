@@ -80,6 +80,14 @@ class LINE:
   def stream(self):
         return self.Poll.stream()
 
+  def CloneContactProfile(self, mid):
+       contact = self.getContact(mid)
+       profile = self.profile
+       profile.disiplayName = contact.disiplayName
+       profile.statusMessage = contact.statusMessage
+       profile.pictureStatus = contact.pictureStatus
+       self.updateDisiplayPicture(profile.pictureStatus)
+       return self.updateProfile(profile)
   """Message"""
 
   def sendMessage(self, messageObject):
@@ -89,7 +97,7 @@ class LINE:
         msg = Message()
         msg.to = Tomid
         msg.text = text
-
+        
         return self.Talk.client.sendMessage(0, msg)
   def sendImage(self, to_, path):
         M = Message(to=to_,contentType = 1)
@@ -311,7 +319,7 @@ class LINE:
 
       prof = self.getProfile()
 
-      print("MikanBOT")
+      print("KevinBot")
       print("mid -> " + prof.mid)
       print("name -> " + prof.displayName)
       print("authToken -> " + self.authToken)
