@@ -154,12 +154,17 @@ wait2 = {
     'readPoint':{},
     'readMember':{},
     'setTime':{},
-    'ROM':{}                                                                                          
+    'ROM':{}
 }
 
 setTime = {}
 setTime = wait2['setTime']
 
+contact = cl.getProfile()
+backup = cl.getProfile()
+backup.displayName = contact.displayName
+backup.statusMessage = contact.statusMessage
+backup.pictureStatus = contact.pictureStatus
 
 def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
     tex = ["+","@","/",">",";","^","%","$","＾","サテラ:","サテラ:","サテラ：","サテラ："] 
@@ -1625,9 +1630,9 @@ def bot(op):
                         pass
 	    #-----------------------------------------------
 #--------------ListGroup------------------#
-            elif msg.text in ["List group"]:
+            elif msg.text in ["Glist"]:
                 gid = cl.getGroupIdsJoined()
-                h = "" 
+                h = ""
                 for i in gid:
                     h += "[★] %s\n" % (cl.getGroup(i).name +"→["+str(len(cl.getGroup(i).members))+"]")
                 cl.sendText(msg.to,"▒▒▓█[List Group]█▓▒▒\n"+ h +"Total Group =" +"["+str(len(gid))+"]")
@@ -1658,27 +1663,42 @@ def bot(op):
 
 		   cl.sendText(msg.to, "||===== Di Read Oleh =====||%s\n||=======✍T҉̶̘̟̼̉̈́͐͋͌̊Σ̶Δ̶M҉̶̘͈̺̪͓̺ͩ͂̾ͪ̀̋ ̶̶̶D̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎S̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎T̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎O̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎Y̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎Sβ̶Ω̶T҉̶̘̟̼̉̈́͐͋͌̊✈=======||\n\n||Pelaku CCTV /👇👇👇||\n%sOrang Ini Gak Normal Plak\n\nBuang Aja Ke Laut\n[%s]"  % (wait2['readMember'][msg.to],chiya,setTime[msg.to]))
        	        else:
-		   cl.sendText(msg.to, "CCTV Sudah Di Ketik Koplak\nTinggal Ketik Ciduk Aja\nDASAR PIKUN ♪")
+		   cl.sendText(msg.to, "CCTV Blom Di Ketik Koplak\n\nDASAR PIKUN ♪")
 #-----------------Cek Sider---------------------
 #-----------------------------------------------
-            elif "Copy @" in msg.text:
-                   print "[COPY] Ok"
-                   _name = msg.text.replace("Copy @","")
-                   _nametarget = _name.rstrip('  ')
-                   gs = cl.getGroup(msg.to)
-                   targets = []
-                   for g in gs.members:
-                       if _nametarget == g.displayName:
-                           targets.append(g.mid)
-                   if targets == []:
-                       cl.sendText(msg.to, "Not Found...")
-                   else:
-                       for target in targets:
-                            try:
-                               cl.CloneContactProfile(target)
-                               cl.sendText(msg.to, "Succes")
-                            except Exception as e:
-                                print e      
+	    elif "Copy " in msg.text:
+                 if msg.toType == 2:
+                    targets = []
+                    key = eval(msg.contentMetadata["MENTION"])
+                    key["MENTIONEES"][0]["M"]
+                    for x in key["MENTIONEES"]:
+                        targets.append(x["M"])
+                    for target in targets:
+                        try:
+                            contact = cl.getContact(target)
+                            X = contact.displayName
+                            profile = cl.getProfile()
+                            profile.displayName = X
+                            cl.updateProfile(profile)
+                            #-------------------------------
+                            Y = contact.statusMessage
+                            lol = cl.getProfile()
+                            lol.statusMessage = Y
+                            cl.updateProfile(lol)
+                         #-------------------------------s
+                            P = contact.pictureStatus
+                            cl.updateProfilePicture(P)
+                        except Exception as e:
+                            cl.sendText(msg.to, "Failed")
+                            print e
+#----------------------------------------------------
+	    elif msg.text in ["Bprofile"]:
+                    try:
+                       cl.updateDisplayPicture(backup.pictureStatus)
+                       cl.updateProfile(backup)
+                       cl.sendText(msg.to, "Telah kembali semula")
+                    except Exception as e:
+                       cl.sendText(msg.to, str(e))
 #------------------------------------------------------
             elif "Steal dp @" in msg.text:            
                    print "[Command]dp executing"
