@@ -160,12 +160,6 @@ wait2 = {
 setTime = {}
 setTime = wait2['setTime']
 
-contact = cl.getProfile()
-backup = cl.getProfile()
-backup.displayName = contact.displayName
-backup.statusMessage = contact.statusMessage
-backup.pictureStatus = contact.pictureStatus
-
 def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
     tex = ["+","@","/",">",";","^","%","$","＾","サテラ:","サテラ:","サテラ：","サテラ："] 
     for tex in tex:
@@ -1692,13 +1686,18 @@ def bot(op):
                             cl.sendText(msg.to, "Failed")
                             print e
 #----------------------------------------------------
-	    elif msg.text in ["Bprofile"]:
-                    try:
-                       cl.updateDisplayPicture(backup.pictureStatus)
-                       cl.updateProfile(backup)
-                       cl.sendText(msg.to, "Telah kembali semula")
-                    except Exception as e:
-                       cl.sendText(msg.to, str(e))
+	    elif msg.text in ["Backup","backup"]:
+		  contact = cl.getProfile()
+		  backup = cl.getProfile()
+		  backup.displayName = contact.displayName
+		  backup.statusMessage = contact.statusMessage
+	          backup.pictureStatus = contact.pictureStatus
+                  try:
+                      cl.updateDisplayPicture(backup.pictureStatus)
+                      cl.updateProfile(backup)
+                      cl.sendText(msg.to, "Telah kembali semula")
+                  except Exception as e:
+                      cl.sendText(msg.to, str(e))
 #------------------------------------------------------
             elif "Steal dp @" in msg.text:            
                    print "[Command]dp executing"
@@ -1804,7 +1803,7 @@ def bot(op):
                     cl.sendText(msg.to,"Error")
             elif "fakecat’" in msg.text:
                 try:
-                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
+                    source_str = 'aWbcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
                     name = "".join([random.choice(source_str) for x in xrange(10)])
                     kimid = msg.text.replace("fakecâ†’","")
                     cl.sendText(msg.to,str(cl.channel.createAlbumF(msg.to,name,kimid)))
@@ -1815,6 +1814,13 @@ def bot(op):
                         pass
 
 #----------------------------------------------- 
+	    elif "Contact bc " in msg.text:
+                  bctxt = msg.text.replace("Contact bc ", "")
+                  t = cl.getAllContactIds()
+                  t = 5
+                  while(t):
+                    cl.sendText(msg.to, (bctxt))
+                    t-=1
 #-------------------Fungsi Spam Start----------------------#
             elif "Spam " in msg.text:
                    txt = msg.text.split(" ")
@@ -1891,7 +1897,7 @@ def bot(op):
                         random.choice(KAC).updateGroup(G)
                        
 #-----------------------------------------------
-            elif msg.text.lower() == 'backup':
+            elif msg.text.lower() == 'protect':
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
