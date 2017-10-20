@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-156
 
 
 import LINETCR 
@@ -1187,7 +1187,7 @@ def bot(op):
                     ki5.leaveGroup(i)
                     ki6.leaveGroup(i)
                 if wait["lang"] == "JP":
-                    cl.sendText(msg.to,"✍T҉̶̘̟̼̉̈́͐͋͌̊Σ̶Δ̶M҉̶̘͈̺̪͓̺ͩ͂̾ͪ̀̋ ̶̶̶D̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎S̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎T̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎O̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎Y̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎Sβ̶Ω̶T҉̶̘̟̼̉̈́͐͋͌̊✈Sudah Keluar Di semua grup")
+                    cl.sendText(msg.to,"✍T҉̶̘̟̼̉̈́͐͋͌̊Σ̶Δ̶M҉̘͈̺̪͓̺ͩ͂̾ͪ̀̋�� ̶̶̶D̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎S̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎T̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎O̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎Y̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎E̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎͎R̶̶꙯꙯꙰꙰͎͎͎͎͎͎͎͎͎͎͎͎͎͎Sβ̶Ω̶T҉̶̘̟̼̉̈́͐͋͌̊✈Sudah Keluar Di semua grup")
                 else:
                     cl.sendText(msg.to,"He declined all invitations")
             elif msg.text in ["Group cancelall"]:
@@ -1458,7 +1458,68 @@ def bot(op):
                                 except:
                                     cl.sendText(msg.to,"Good Bye")
 #-----------------------------------------------------------
-#-----------------------------------------------------------  
+            elif "Admin add @" in msg.text:
+                if msg.from_ in admin:
+                    print "[Command]Staff add executing"
+                    _name = msg.text.replace("Admin add @","")
+                    _nametarget = _name.rstrip('  ')
+                    gs = ki.getGroup(msg.to)
+                    gs = ki2.getGroup(msg.to)
+                    gs = ki3.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _nametarget == g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"Contact not found")
+                    else:
+                        for target in targets:
+                            try:
+                                admin.append(target)
+                                cl.sendText(msg.to,"Admin Ditambahkan")
+                            except:
+                                pass
+                    print "[Command]Staff add executed"
+                else:
+                    ki.sendText(msg.to,"Command denied.")
+                    ki.sendText(msg.to,"Admin permission required.")\
+
+            elif "Admin remove @" in msg.text:
+                if msg.from_ in admin:
+                    print "[Command]Staff remove executing"
+                    _name = msg.text.replace("Admin remove @","")
+                    _nametarget = _name.rstrip('  ')
+                    gs = ki.getGroup(msg.to)
+                    gs = kk.getGroup(msg.to)
+                    gs = kc.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _nametarget == g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"Contact not found")
+                    else:
+                        for target in targets:
+                            try:
+                                admin.remove(target)
+                                ko.sendText(msg.to,"Admin Dihapus")
+                            except:
+                                pass
+                    print "[Command]Staff remove executed"
+                else:
+                    ki.sendText(msg.to,"Command denied.")
+                    ki.sendText(msg.to,"Admin permission required.")
+
+            elif msg.text in ["Adminlist","adminlist"]:
+                if admin == []:
+                    ki.sendText(msg.to,"The stafflist is empty")
+                else:
+                    ki.sendText(msg.to,"Tunggu...")
+                    mc = ""
+                    for mid in admin:
+                        mc += "->" +ki.getContact(mid).displayName + "\n"
+                    cl.sendText(msg.to,mc)
+                    print "[Command]Stafflist executed"
 #-----------------------------------------------------------
             elif "Ban @" in msg.text:
                 if msg.toType == 2:
@@ -1504,23 +1565,23 @@ def bot(op):
                                 cl.sendText(msg.to,"Error")
             
             elif "Unban all" in msg.text:
-		if msg.toType == 2:
-                    print "ok"
-   	            _name = msg.text.replace("Unban all","")
+                if msg.toType == 2:
+                    print "[UnbanAll]ok"
+                    _name = msg.text.replace("Unban all","")
                     gs = cl.getGroup(msg.to)
       	            cl.sendText(msg.to,"Semua Telah Di Hapus")
                     targets = []
 	            for g in gs.members:
                         if _name in g.displayName:
-			    targets.append(g.mid)
+	                    targets.append(g.mid)
    	            if targets == []:
-		        cl.sendText(msg.to,"Maaf")
+                        cl.sendText(msg.to,"Maaf")
 	            else:
 	                for target in targets:
-		            try:
-			        del wait["blacklist"][target]
-		                f=codecs.open('st2__b.json','w','utf-8')
-			        json.dump(wait["blacklist"],f, sort_keys=True,indent=4,ensure_ascii=False)
+	                    try:
+	                        del wait["blacklist"][target]
+	 	                f=codecs.open('st2__b.json','w','utf-8')
+	                        json.dump(wait["blacklist"],f, sort_keys=True, indent=4,ensure_ascii=False)
 		            except:
 		                cl.sentText(msg.to,"Berhasil Dihapus")
 
@@ -1682,22 +1743,18 @@ def bot(op):
                          #-------------------------------s
                             P = contact.pictureStatus
                             cl.updateProfilePicture(P)
+                            cl.sendText(msg.to, "Succes")
                         except Exception as e:
                             cl.sendText(msg.to, "Failed")
                             print e
 #----------------------------------------------------
 	    elif msg.text in ["Backup","backup"]:
-		  contact = cl.getProfile()
-		  backup = cl.getProfile()
-		  backup.displayName = contact.displayName
-		  backup.statusMessage = contact.statusMessage
-	          backup.pictureStatus = contact.pictureStatus
-                  try:
-                      cl.updateDisplayPicture(backup.pictureStatus)
-                      cl.updateProfile(backup)
-                      cl.sendText(msg.to, "Telah kembali semula")
-                  except Exception as e:
-                      cl.sendText(msg.to, str(e))
+              try:
+                  cl.updateDisplayPicture(backup.pictureStatus)
+                  cl.updateProfile(backup)
+                  cl.sendText(msg.to, "Telah kembali semula")
+              except Exception as e:
+                  cl.sendText(msg.to, str(e))
 #------------------------------------------------------
             elif "Steal dp @" in msg.text:            
                    print "[Command]dp executing"
@@ -1816,11 +1873,12 @@ def bot(op):
 #----------------------------------------------- 
 	    elif "Contact bc " in msg.text:
                   bctxt = msg.text.replace("Contact bc ", "")
-                  t = cl.getAllContactIds()
+                  tt = cl.getAllContactIds()
                   t = 5
-                  while(t):
-                    cl.sendText(msg.to, (bctxt))
-                    t-=1
+                  for i in tt:
+                    while(t):
+                      cl.sendTxt(i, (bctxt))
+                      t-=1
 #-------------------Fungsi Spam Start----------------------#
             elif "Spam " in msg.text:
                    txt = msg.text.split(" ")
@@ -1846,7 +1904,7 @@ def bot(op):
                 elapsed_time = time.time() - start
                 cl.sendText(msg.to, "%sseconds" % (elapsed_time))
 #-------------Fungsi Tagall User Start---------------#
-            elif msg.text in ["Kuchiyose"]:
+            elif msg.text in ["Dor","dor"]:
                 group = cl.getGroup(msg.to)
                 nama = [contact.mid for contact in group.members]
                 cb = ""
