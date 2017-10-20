@@ -199,13 +199,13 @@ def bot(op):
         if op.type == 15:
             if op.param2 in Bots:
                 return
-            kk.sendText(op.param1,cl.getContact(op.param2).displayName + "Good Bye Honey\nಥ_ಥ")
+            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "Good Bye Honey\nಥ_ಥ")
             print ("MEMBER HAS LEFT THE GROUP")
 # ----------------- NOTIFED MEMBER JOIN GROUP
         if op.type == 17:
             if op.param2 in Bots:
                 return
-            kk.sendText(op.param1,cl.getContact(op.param2).displayName + "Welcome Honey\n( ˘ ³˘)♥")
+            cl.sendText(op.param1,cl.getContact(op.param2).displayName + "Welcome Honey\n( ˘ ³˘)♥")
             print ("MEMBER HAS JOIN THE GROUP")
        #-----------------NOTIFED MEMBER JOIN GROUP
         if op.type == 19:
@@ -1658,7 +1658,7 @@ def bot(op):
                     text = msg.text.replace("/SendMessageTo: " + str(target) + "\n/Message: ","")
                     try:
                         cl.findAndAddContactsByMid(target)
-                        cl.sendText(target,"Saya membawakan pesan dari presiden untuk anda yang berisi: \"" + text + "\"")
+                        cl.sendText(target,"\"" + text + "\"")
                         cl.sendText(msg.to,"Berhasil mengirim pesan")
                     except:
                         cl.sendText(msg.to,"Gagal mengirim pesan, mungkin midnya salah")
@@ -1692,7 +1692,7 @@ def bot(op):
                  gid = cl.getGroupIdsJoined()
                  h = ""
                  for i in gid:
-                  h += "[★] %s\n" % (cl.getGroup(i).name +"→["+str(len(cl.getGroup(i).members))+"]")
+                     h += "[★] %s\n" % (cl.getGroup(i).name +"→["+str(len(cl.getGroup(i).members))+"]")
                  cl.sendText(msg.to,"▒▒▓█[List Group]█▓▒▒\n"+ h +"Total Group =" +"["+str(len(gid))+"]")
 #---------------Cek Sider---------------
 	    elif msg.text == "Cctv":
@@ -2627,17 +2627,25 @@ def FancySalsaImoet():
     while True:
         try:
             profile = cl.getProfile()
+            profile.displayName = "♞Im Here▲ ⓔ30™"
+            cl.updateProfile(profile)
+            time.sleep(30)
+            profile = cl.getProfile()
             profile.displayName = "♞You Know Me?▲ ⓔ30™"
             cl.updateProfile(profile)
             time.sleep(30)
             profile = cl.getProfile()
-            profile.displayName = "♞Yeah This Me▲ ⓔ30™"
+            profile.displayName = "♞HAHAHAHA▲ ⓔ30™"
+	    cl.updateProfile(profile)
+	    time.sleep(30)
+	    profile = cl.getProfile()
+            profile.displayName = "♞THIS ME▲ ⓔ30™"
             cl.updateProfile(profile)
             time.sleep(30)
             profile = cl.getProfile()
             profile.displayName = "♞KevinV69▲ ⓔ30™"
-	    cl.updateProfile(profile)
-	    time.sleep(30)
+            cl.updateProfile(profile)
+            time.sleep(30)
         except:
             pass
 thread2 = threading.Thread(target=FancySalsaImoet)
